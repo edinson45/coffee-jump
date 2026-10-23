@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>COFFE Jump · UTP</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="phone">
+    <!-- Barra de estado simulada -->
+    <div class="status">
+      <span id="clock">9:41</span>
+      <span class="r">▂▄▆█ <span>5G</span><span class="bat"><i></i></span></span>
+    </div>
+
+    <!-- ===== A. AUTENTICACIÓN ===== -->
+    <section class="view active" id="v-auth">
+      <div class="auth-top">
+        <div class="logo">☕</div>
+        <h1>COFFE Jump</h1>
+        <p>Pedidos anticipados · Cafetería UTP</p>
+      </div>
+      <div class="scroll">
+        <div class="tabs">
+          <button id="tab-in" class="on">Ingresar</button>
+          <button id="tab-up">Registrarse</button>
+        </div>
+        <form id="f-in" autocomplete="off">
+          <label>Correo institucional</label>
+          <input id="in-mail" type="email" placeholder="u22247397@utp.edu.pe" required>
+          <label>Contraseña</label>
+          <input id="in-pass" type="password" placeholder="••••••••" required>
+          <div class="err" id="err-in"></div>
+          <button class="primary" type="submit">Ingresar</button>
+        </form>
+        <form id="f-up" autocomplete="off" style="display:none">
+          <div class="row">
+            <div><label>Nombre</label><input id="up-name" required></div>
+            <div><label>Apellido</label><input id="up-last" required></div>
+          </div>
+          <label>Código de estudiante</label>
+          <input id="up-code" placeholder="u22247397" required>
+          <label>Correo institucional</label>
+          <input id="up-mail" type="email" placeholder="u22247397@utp.edu.pe" required>
+          <label>Contraseña</label>
+          <input id="up-pass" type="password" minlength="4" required>
+          <div class="err" id="err-up"></div>
+          <button class="primary" type="submit">Crear cuenta</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== B. HOME / CATÁLOGO ===== -->
+    <section class="view" id="v-home">
+      <div class="hdr">
+        <div><h2 id="hello">Hola</h2><small id="ucode"></small></div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button class="back" id="logout" aria-label="Cerrar sesión" title="Cerrar sesión">⎋</button>
+          <button class="cartbtn" id="go-cart" aria-label="Carrito">🛒<span class="badge" id="badge">0</span></button>
+        </div>
+      </div>
+      <div class="scroll">
+        <div class="search">🔍<input id="q" placeholder="Buscar café, sándwich, postre…"></div>
+        <div class="cats" id="cats"></div>
+        <div id="list"></div>
+      </div>
+    </section>
+
+    <!-- ===== C. CARRITO / CHECKOUT ===== -->
+    <section class="view" id="v-cart">
+      <div class="hdr">
+        <button class="back" id="back-home">←</button>
+        <h2>Mi carrito</h2>
+        <span style="width:38px"></span>
+      </div>
+      <div class="scroll">
+        <div id="cart-items"></div>
+        <div id="checkout">
+          <h3>📍 Sede / Cafetería de recojo</h3>
+          <select id="sede">
+            <option>Campus Principal Piura · Pabellón A</option>
+            <option>Campus Principal Piura · Pabellón B</option>
+            <option>Campus Principal Piura · Patio Central</option>
+          </select>
+          <h3>🕒 Franja horaria</h3>
+          <select id="slot"></select>
+          <h3>💳 Método de pago</h3>
+          <div class="pay" id="pay">
+            <button data-p="Yape / Plin" class="on">📱 Yape / Plin</button>
+            <button data-p="Tarjeta">💳 Tarjeta</button>
+            <button data-p="Efectivo en caja">💵 Efectivo</button>
+          </div>
+          <div class="hint" id="pay-hint">Yapea o Plinea al 987 654 321 (COFFE Jump UTP) y muestra la captura al recoger.</div>
+          <div class="totals">
+            <div><span>Subtotal</span><span id="sub"></span></div>
+            <div><span>Comisión de servicio</span><span>S/. 0.00</span></div>
+            <div class="t"><span>Total</span><span id="tot"></span></div>
+          </div>
+          <button class="primary green" id="confirm">Confirmar y Guardar en BD</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== D. SEGUIMIENTO ===== -->
+    <section class="view" id="v-track">
+      <div class="ok">
+        <div class="big">✅</div>
+        <h2 id="ok-title">¡Pedido confirmado!</h2>
+        <p>Orden <b id="ord"></b> · <span id="ord-total"></span></p>
+      </div>
+      <div class="scroll">
+        <div class="tl" id="tl"></div>
+        <div class="tl" id="sum" style="padding-bottom:12px"></div>
+        <div class="qr">
+          <b>Muestra este QR en ventanilla</b>
+          <div class="qrgrid" id="qr"></div>
+          <small id="qr-info"></small>
+        </div>
+        <button class="primary" id="sim">Simular: ¡Pedido Listo!</button>
+        <button class="ghost" id="reset">Hacer otro pedido</button>
+      </div>
+    </section>
+
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
